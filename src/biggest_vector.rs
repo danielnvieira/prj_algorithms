@@ -5,13 +5,23 @@ pub fn exec() {
     let mut biggest = 1;
 
     for x in 0..size {
+        print!("[");
+        for y in 0..size {
+            print!(" {} ", arr_bi[x][y]);
+        }
+        print!("]");
+        println!();
+    }
+
+    for x in 0..size {
         let mut size_arr = 0;
         for y in 0..size {
             if arr_bi[x][y] == 1 {
                 size_arr += 1;
                 if size_arr > 1 && size_arr > biggest {
                     if is_square(&arr_bi, get_pos(x, size_arr), get_pos(y, size_arr), x, y) {
-                        biggest = size_arr
+                        biggest = size_arr;
+                        size_arr = 0;
                     } else {
                         size_arr = 0;
                     }
@@ -45,16 +55,19 @@ fn is_square(
     if x.is_none() || y.is_none() {
         return false;
     }
+
     let mut square = true;
-    for i in x.unwrap()..x_max {
-        if square {
-            for j in y.unwrap()..y_max {
-                if arr[i][j] != 1 {
-                    square = false;
-                    break;
-                }
+    for i in x.unwrap()..=x_max {
+        for j in y.unwrap()..=y_max {
+            if arr[i][j] != 1 {
+                square = false;
+                return square;
             }
         }
     }
+    // if square {
+    //     println!("x: {} max: {}", x.unwrap(), x_max);
+    //     println!("y: {} max: {}", y.unwrap(), y_max);
+    // }
     return square;
 }

@@ -1,1 +1,5 @@
 /target
+/.idea/.gitignore
+/.idea/modules.xml
+/.idea/prj_algorithms.iml
+/.idea/vcs.xml
